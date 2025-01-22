@@ -1,0 +1,32 @@
+#!/bin/bash
+
+make="${MAKE:-make}"
+
+cd lib
+
+cd cons
+$make $1 $2 || exit
+cd ..
+
+cd util
+$make $1 $2 || exit
+cd ..
+
+cd sdcard
+$make $1 $2 || exit
+cd ..
+
+cd fatfs
+$make $1 $2 || exit
+cd ..
+
+cd ..
+
+cd piterm
+$make $1 $2 || exit
+cd ..
+
+# TODO: Add new apps here
+#cd subdir
+#$make $1 $2 || exit
+#cd ..
