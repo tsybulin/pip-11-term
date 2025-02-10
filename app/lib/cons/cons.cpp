@@ -136,30 +136,33 @@ void iprintf(const char *__restrict format, ...) {
 }
 
 void Console::showStatus() {
+    int TOP = screen->GetHeight() - STATUS_HEIGHT ;
     const u16 *st = status[vt52_mode ? 1 : 0] ;
     for (int y = 0; y < STATUS_HEIGHT; y++) {
         for (int x = 0; x < STATUS_WIDTH; x++) {
-			screen->SetPixel(x, y + 1256, st[y * STATUS_WIDTH + x]) ;
+			screen->SetPixel(x, y + TOP, st[y * STATUS_WIDTH + x]) ;
         }
     }
 }
 
 void Console::showRusLat() {
+    int TOP = screen->GetHeight() - LATRUS_HEIGHT ;
     unsigned xshift = STATUS_WIDTH + 5 ;
     unsigned lrshift = koi7n1 ? LATRUS_HEIGHT * LATRUS_WIDTH : 0 ;
     for (int y = 0; y < LATRUS_HEIGHT; y++) {
         for (int x = 0; x < LATRUS_WIDTH; x++) {
-			screen->SetPixel(x + xshift, y + 1256, latrus[lrshift + y * LATRUS_WIDTH + x]) ;
+			screen->SetPixel(x + xshift, y + TOP, latrus[lrshift + y * LATRUS_WIDTH + x]) ;
         }
     }
 }
 
 void Console::showThrottle(bool v) {
+    int TOP = screen->GetHeight() - STATUS_HEIGHT ;
     unsigned xshift = STATUS_WIDTH * 2 + 10 ;
     unsigned thshift = v ? THROTTLE_HEIGHT * THROTTLE_WIDTH : 0 ;
     for (int y = 0; y < THROTTLE_HEIGHT; y++) {
         for (int x = 0; x < THROTTLE_WIDTH; x++) {
-			screen->SetPixel(x + xshift, y + 1256, throttle[thshift + y * THROTTLE_WIDTH + x]) ;
+			screen->SetPixel(x + xshift, y + TOP, throttle[thshift + y * THROTTLE_WIDTH + x]) ;
         }
     }
 }

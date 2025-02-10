@@ -243,7 +243,7 @@ TShutdownMode CKernel::Run (void) {
 	console.showThrottle(false) ;
 	CString txt ;
 	txt.Format("PiTerm " __DATE__ " " __TIME__ " %dx%d (%dx%d) (%dx%d)", screen.GetWidth(), screen.GetHeight(), screen.GetColumns(), screen.GetRows(), screen.getCharWidth(), screen.getCharHeight()) ;
-	this->console.write(txt, 0, 22, BRIGHT_BLACK_COLOR) ;
+	this->console.write(txt, 0, 23, BRIGHT_BLACK_COLOR) ;
 
 	bool clean = false ;
 
@@ -264,7 +264,7 @@ TShutdownMode CKernel::Run (void) {
 		if (queue_try_remove(&keyboard_queue, &c)) {
 			if (!clean) {
 				clean = true ;
-                console.vtFillRegion(0, 22, TEXTMODE_COLS, 22, ' ', WHITE_COLOR, CONS_BACKGROUND_COLOR) ;
+                console.vtFillRegion(0, 23, TEXTMODE_COLS, 23, ' ', WHITE_COLOR, CONS_BACKGROUND_COLOR) ;
 			}
 
 			if (serial.Write(&c, 1) != 1) {
